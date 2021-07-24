@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                Une erreur s'est produite, veuillez rafraichir la page
+            </div>
+        {% endif %}
+
+
+        <div class="row">
+            {% for catImage in catImages %}
+                <div class="card mt-2" style="width: 100px">
+                    <img src="{{ catImage.url }}" class="card-img-top" alt="images de chat" height="100px"
+                         width="200px">
+                    <hr>
+                    <a href="{{ path('add_vote', {id:catImage.id, value:1}) }}" class="btn btn-primary"> Vote
+                        positif</a>
+                    <a href="{{ path('add_vote', {id:catImage.id, value:0}) }}" class="btn btn-warning"> vote
+                        negatif</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

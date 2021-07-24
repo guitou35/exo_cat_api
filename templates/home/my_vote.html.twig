@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                Une erreur s'est produite, veuillez rafraichir la page
+            </div>
+        {% endif %}
+
+        {% if votes %}
+            <h1>Vote de l'utilisateur</h1>
+            {% for vote in votes %}
+                <div class="card mt-2">
+                    Image id : {{ vote.image_id }} <br>
+                    {% if vote.value == 1 %}
+                        vote positif
+                    {% else %}
+                        vote négatif
+                    {% endif %}
+                    <a href="{{ path('delete_vote', {id: vote.id}) }}" class="btn btn-danger">Supprimer le vote</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                Vous n'avez pas encore voté
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

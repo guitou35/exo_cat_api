@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                Une erreur s'est produite, veuillez rafraichir la page
+            </div>
+        {% endif %}
+
+        {% for categorie in categories %}
+            <div class="card mt-2">
+                <div class="card-body">
+                    <a href="{{ path('cat_by_categorie', {id: categorie.id}) }}"
+                       class="card-link">{{ categorie.name }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
